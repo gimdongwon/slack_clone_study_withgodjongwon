@@ -1,4 +1,5 @@
 import { GraphQLServer } from 'graphql-yoga';
+import connection from './ormConfig';
 
 const typeDefs = `
     type Query{
@@ -16,4 +17,7 @@ const resolvers = {
 // 함수의 비즈니스 로직이 실제로 들어가는 부분
 
 const server = new GraphQLServer({ typeDefs, resolvers });
-server.start(() => console.log('Hello GraphQL server'));
+
+connection.then(() => {
+	server.start(() => console.log('Hello GraphQL server'));
+});
