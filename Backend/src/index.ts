@@ -18,6 +18,4 @@ const resolvers = {
 
 const server = new GraphQLServer({ typeDefs, resolvers });
 
-connection.then(() => {
-	server.start(() => console.log('Hello GraphQL server'));
-});
+connection.then(() => server.start(() => console.log('Hello GraphQL server')));
