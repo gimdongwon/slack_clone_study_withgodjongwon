@@ -1,6 +1,7 @@
 type Message {
 	id: Int!
 	nickname: String!
+	thumbnail: String!
 	contents: String!
 	innerChannel: Channel!
 	innerChannelId: Int!

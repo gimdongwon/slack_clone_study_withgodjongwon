@@ -1,4 +1,4 @@
-import { GraphQLServer } from 'graphql-yoga';
+import { GraphQLServer, PubSub } from 'graphql-yoga';
 import connection from './ormConfig';
 import schema from './schema';
 
@@ -17,6 +17,7 @@ import schema from './schema';
 // };
 // // 함수의 비즈니스 로직이 실제로 들어가는 부분
 
-const server = new GraphQLServer({ schema });
+const pubSub = new PubSub();
+const server = new GraphQLServer({ schema, context: { pubSub } });
 
 connection.then(() => server.start(() => console.log('Hello GraphQL server')));

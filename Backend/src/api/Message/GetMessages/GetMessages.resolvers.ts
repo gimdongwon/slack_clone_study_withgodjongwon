@@ -13,7 +13,7 @@ const resolvers: Resolvers = {
 				return {
 					ok: true,
 					error: null,
-					messages
+					messages: messages
 				};
 			} catch (error) {
 				return {
