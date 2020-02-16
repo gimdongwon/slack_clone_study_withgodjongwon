@@ -10,7 +10,8 @@ type Mutation {
 }
 
 type Subscription {
-  CreateChannelsSubscription: Channel
+  CreateChannelSubscription: Channel
+  CreateMessageSubscription: Message
 }
 
 type GetChannelsResponse {

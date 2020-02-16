@@ -1,9 +1,20 @@
-import React from 'react';
-import './App.css';
-import Counter from './Counter';
+import React from "react";
+import "./App.css";
+import styled from "styled-components";
+import ChannelList from "./Components/ChannelList";
 
 function App() {
-	return <Counter />;
+  return (
+    <MainFrame>
+      <ChannelList />
+    </MainFrame>
+  );
 }
+
+const MainFrame = styled.div`
+  display: flex;
+  height: 100%;
+  flex-direction: row;
+`;
 
 export default App;
