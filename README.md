@@ -2,6 +2,9 @@
 
 매주 화, 목 12pm ~ 12:50pm
 
-1. 1st 참석 (20.01.02)
-2. 2nd 참석 (20.01.07)
-3. 3rd 불참 (20.01.09)
+갓 종원님과 함께하는 graphql 스터디!
+
+1. graphql
+2. typeorm
+3. typescript
+4. react
