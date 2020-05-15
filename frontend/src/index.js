@@ -4,4 +4,17 @@ import App from "./App";
 
 import GlobalStyle from "./GlobalStyles";
 
-ReactDOM.render(<><App /><GlobalStyle/></>, document.getElementById("root"));
+import { ApolloProvider } from "react-apollo";
+import { ApolloProvider as ApolloHookProvider } from "react-apollo-hooks";
+
+import client from "./apolloClient";
+
+ReactDOM.render(
+  <ApolloProvider client={client}>
+    <ApolloHookProvider client={client}>
+      <App />
+      <GlobalStyle />
+    </ApolloHookProvider>
+  </ApolloProvider>,
+  document.getElementById("root")
+);

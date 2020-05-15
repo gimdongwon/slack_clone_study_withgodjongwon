@@ -1,17 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 
+import { useQuery, useMutation } from "react-apollo-hooks";
+import { GET_CHANNELS_QUERY, CREATE_CHANNEL_MUTATION } from "../queries";
+
 const ChannelList = () => {
+  const [channelName, setChannelName] = useState("");
+  const { data, loading } = useQuery(GET_CHANNELS_QUERY);
+  const [createChannel] = useMutation(CREATE_CHANNEL_MUTATION);
+
+  const createChannelFnc = () => {
+    createChannel({
+      variables: {
+        channelName: "안녕"
+      }
+    });
+  };
+
   return (
     <MainFrame>
       <Title>Slack with GraphQL</Title>
       <SubTitle>참여 가능 채널 목록</SubTitle>
-      <Channel isActive={true}># blah-blah</Channel>
+      {!loading &&
+        data.GetChannels &&
+        data.GetChannels.ok &&
+        data.GetChannels.channels.length > 0 &&
+        data.GetChannels.channels.map((val, idx) =>
+          <Channel key={idx}>
+            # {val.channelName}
+          </Channel>
+        )}
       <Channel># frontend</Channel>
-      <Channel># backend</Channel>
 
       <CreateChannelFrame>
-        <CreateChannelInput placeholder="input new channel" />
+        <CreateChannelInput
+          placeholder="input new channel"
+          value={channelName}
+          onChange={e => setChannelName(e.target.value)}
+        />
         <CreateChannelBtn>+</CreateChannelBtn>
       </CreateChannelFrame>
     </MainFrame>
@@ -20,7 +46,7 @@ const ChannelList = () => {
 
 const MainFrame = styled.div`
   position: relative;
-  width: 250px;
+  min-width: 250px;
   height: 100%;
   padding: 15px 15px 15px 15px;
   background: #4d394b;
